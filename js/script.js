@@ -251,49 +251,6 @@ function initParallaxEffects() {
   });
 }
 
-// ===== MOUSE CURSOR EFFECTS =====
-function initCursorEffects() {
-  // Create custom cursor
-  const cursor = document.createElement("div");
-  cursor.className = "custom-cursor";
-  cursor.style.cssText = `
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    background: linear-gradient(135deg, #8B5CF6, #D946EF);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.1s ease;
-    opacity: 0;
-  `;
-  document.body.appendChild(cursor);
-
-  // Update cursor position
-  document.addEventListener("mousemove", (e) => {
-    cursor.style.left = e.clientX - 10 + "px";
-    cursor.style.top = e.clientY - 10 + "px";
-    cursor.style.opacity = "1";
-  });
-
-  // Hide cursor when leaving window
-  document.addEventListener("mouseleave", () => {
-    cursor.style.opacity = "0";
-  });
-
-  // Scale cursor on hover over interactive elements
-  const interactiveElements = document.querySelectorAll(
-    "a, button, .service-card, .project-card"
-  );
-  interactiveElements.forEach((element) => {
-    element.addEventListener("mouseenter", () => {
-      cursor.style.transform = "scale(1.5)";
-    });
-    element.addEventListener("mouseleave", () => {
-      cursor.style.transform = "scale(1)";
-    });
-  });
-}
 
 // ===== PERFORMANCE OPTIMIZATION =====
 function debounce(func, wait) {
@@ -376,7 +333,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initFloatingElements();
   initParallaxEffects();
-  initCursorEffects();
+  // initCursorEffects(); // Disabled cursor following effect
   initThemeToggle();
   initLoadingAnimation();
   initKeyboardNavigation();
